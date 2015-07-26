@@ -24,7 +24,8 @@ body{
 }
 
 .logo img{
-    max-width: 100%;
+    max-width: 321px;
+    max-height: 372px; 
 }
 
 .logo-inicial{
