@@ -39,10 +39,6 @@ body{
     left:0;
 }
 
-.container{
-    display: none;
-}
-
 .vertical-center {
   min-height: 100%;
   display: -webkit-box;
