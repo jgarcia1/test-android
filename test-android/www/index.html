@@ -17,11 +17,9 @@
 	<title></title>
 </head>
 <body>
-	<div class="container">
-		<div class="row logo vertical-center logo-inicial">
-			<div class="text-center">
-				<img src="img/logo.jpg" height="100%">
-			</div>
+	<div class="row logo vertical-center logo-inicial">
+		<div class="text-center">
+			<img src="img/logo.jpg" height="100%">
 		</div>
 	</div>
 	<div class="container oculto">
@@ -52,8 +50,6 @@
 <script src="js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	app.initialize();
-
-	logo();
 
 	$(".btn-max").click(function(){
 		val = $(this).parent().children(".form-control").val();
@@ -118,22 +114,10 @@
 		}, 1300);
 	});
 
-	$(window).resize(function(){
-		logo();
-	});
-
 	document.addEventListener("backbutton", onBackKeyDown, false);
 	function onBackKeyDown() {
 		navigator.app.exitApp();
 	}
-
-	function logo(){
-		$('.logo').css({
-			'width': $(window).width()
-		});
-	}
-
-
 </script>
 
 </html>
