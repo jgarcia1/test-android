@@ -1,3 +1,6 @@
+body{
+    margin-top:30px;
+}
 .time-input .btn-max{
     border-bottom:0px;
     border-radius: 4px 4px 0px 0px;
@@ -10,4 +13,46 @@
 
 .time-input input{
     border-radius:0;
+    font-size:40px;
+    height: auto;
+}
+
+.logo{
+    background-color: #fff;
+}
+
+.logo-inicial{
+    position:absolute;
+    z-index:100;
+    width: 100%;
+    height: 100%;
+}
+
+.logo-cargado{
+    top:0;
+    left:0;
+}
+
+.container{
+    display: none;
+}
+
+.vertical-center {
+  min-height: 100%;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex; 
+    -webkit-box-align : center;
+  -webkit-align-items : center;
+       -moz-box-align : center;
+       -ms-flex-align : center;
+          align-items : center;
+  width: 100%;
+         -webkit-box-pack : center;
+            -moz-box-pack : center;
+            -ms-flex-pack : center;
+  -webkit-justify-content : center;
+          justify-content : center;
 }
