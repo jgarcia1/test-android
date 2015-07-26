@@ -19,13 +19,15 @@ body{
 
 .logo{
     background-color: #fff;
+    margin-left:auto;
+    margin-right:auto;
 }
 
 .logo-inicial{
     position:absolute;
     z-index:100;
     width: 100%;
-    height: 100%;
+    height: 100vh;
 }
 
 .logo-cargado{

@@ -16,7 +16,7 @@
 	<title>Hello World</title>
 </head>
 <body>
-	<div class="logo vertical-center logo-inicial">
+	<div class="row logo vertical-center logo-inicial">
 		<div>
 			<img src="img/logo.jpg" height="100%">
 		</div>
@@ -26,11 +26,13 @@
 			<div class="col-sm-12 text-center"><h1>Seleccione la duración</h1></div>
 			<div class="col-xs-3"></div>
 			<div class="col-xs-3 time-input">
+				<h3 class="text-center">Min</h3>
 				<button class="btn btn-lg btn-default btn-block btn-max">+</button>
 				<input class="form-control input-lg text-center" type="text" value="1" maxlength="2" max="60" />
 				<button class="btn btn-lg btn-default btn-block btn-min" disabled>-</button>
 			</div>
 			<div class="col-xs-3 time-input">
+				<h3 class="text-center">Seg</h3>
 				<button class="btn btn-lg btn-default btn-block btn-max">+</button>
 				<input class="form-control input-lg text-center" type="text" value="1" maxlength="2" max="60" />
 				<button class="btn btn-lg btn-default btn-block btn-min" disabled>-</button>
@@ -109,6 +111,10 @@
 		}, 1000);
 	});
 
+	document.addEventListener("backbutton", onBackKeyDown, false);
+	function onBackKeyDown() {
+		navigator.app.exitApp();
+	} 
 </script>
 
 </html>
