@@ -7,6 +7,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
 	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, target-densitydpi=device-dpi" />
+	<!-- meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" /-->
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/index.css" rel="stylesheet">
 	<!--[if lt IE 9]>
@@ -50,6 +51,7 @@
 <script type="text/javascript">
 	app.initialize();
 
+	logo();
 
 	$(".btn-max").click(function(){
 		val = $(this).parent().children(".form-control").val();
@@ -114,13 +116,22 @@
 		}, 1300);
 	});
 
+	$(window).resize(function(){
+		logo();
+	});
+
 	document.addEventListener("backbutton", onBackKeyDown, false);
 	function onBackKeyDown() {
 		navigator.app.exitApp();
-	} 
+	}
 
-	$('.full-height').css({ height : $( window ).height()});
-	$('.full-width').css({ width : $( window ).width()});
+	function logo(){
+		$('.logo').css({
+			'width': $(window).width()
+		});
+	}
+
+
 </script>
 
 </html>
