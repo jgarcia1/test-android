@@ -19,8 +19,7 @@ body{
 
 .logo{
     background-color: #fff;
-    margin-left:auto;
-    margin-right:auto;
+    margin:0px;
 }
 
 .logo img{
@@ -38,6 +37,10 @@ body{
 .logo-cargado{
     top:0;
     left:0;
+}
+
+.container{
+    display:none;
 }
 
 .vertical-center {

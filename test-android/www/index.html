@@ -16,13 +16,12 @@
 	<title></title>
 </head>
 <body>
-
-	<div class="container">
-		<div class="row logo vertical-center logo-inicial">
-			<div class="col-xs-12 text-center">
-				<img src="img/logo.jpg" height="100%">
-			</div>
+	<div class="row logo vertical-center logo-inicial">
+		<div class="text-center">
+			<img src="img/logo.jpg" height="100%">
 		</div>
+	</div>
+	<div class="container">
 		<div class="row">
 			<div class="col-sm-12 text-center"><h1>Seleccione la duración</h1></div>
 			<div class="col-xs-3"></div>
@@ -40,7 +39,7 @@
 			</div>
 			<div class="col-xs-3"></div>
 		</div>
-		
+
 	</div>
 </body>
 
@@ -108,7 +107,7 @@
 			$('.logo').animate({"height":150},300);
 			$('.logo div').animate({"height":150},300);
 			$('.logo').removeClass( "logo-inicial" );
-			//$('.container').fadeIn('slow');
+			$('.container').fadeIn('slow');
 		}, 1000);
 	});
 
