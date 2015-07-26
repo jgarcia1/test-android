@@ -17,12 +17,14 @@
 	<title></title>
 </head>
 <body>
-	<div class="row logo vertical-center logo-inicial">
-		<div class="text-center">
-			<img src="img/logo.jpg" height="100%">
+	<div class="container">
+		<div class="row logo vertical-center logo-inicial">
+			<div class="text-center">
+				<img src="img/logo.jpg" height="100%">
+			</div>
 		</div>
 	</div>
-	<div class="container">
+	<div class="container oculto">
 		<div class="row">
 			<div class="col-sm-12 text-center"><h1>Seleccione la duración</h1></div>
 			<div class="col-xs-3"></div>
@@ -112,7 +114,7 @@
 			
 		}, 1000);
 		setTimeout(function(){
-			$('.container').fadeIn('slow');
+			$('.oculto').fadeIn('slow');
 		}, 1300);
 	});
 
