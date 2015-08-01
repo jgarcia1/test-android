@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="msapplication-tap-highlight" content="no" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, target-densitydpi=device-dpi" />
+	<!-- meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" /-->
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+	<title></title>
+	<style>
+	@keyframes animatedBackground {
+		0% { background-position: 0 0; }
+		100% { background-position: -1000px 0; }
+	}
+	@-moz-keyframes animatedBackground {
+		0% { background-position: 0 0; }
+		100% { background-position: -1000px 0; }
+	}
+	@-webkit-keyframes animatedBackground {
+		0% { background-position: 0 0; }
+		100% { background-position: -1000px 0; }
+	}
+	@-ms-keyframes animatedBackground {
+		0% { background-position: 0 0; }
+		100% { background-position: -1000px 0; }
+	}
+	@-o-keyframes animatedBackground {
+		0% { background-position: 0 0; }
+		100% { background-position: -1000px 0; }
+	}
+	.drag {
+		position: absolute;
+		//background: #BCE;
+		height: 58px;
+		width: 58px;
+		cursor: move;
+		top: 120px;
+		min-width: 50px;
+		background-image: url(img/line.png);
+		background-repeat: repeat-x;
+		background-position: 100% 0;
+
+		animation: animatedBackground 5s linear infinite;
+		-moz-animation: animatedBackground 5s linear infinite;
+		-webkit-animation: animatedBackground 5s linear infinite;
+		-ms-animation: animatedBackground 5s linear infinite;
+		-o-animation: animatedBackground 5s linear infinite;
+		}
+
+	.drag-conteiner {
+		//margin-top:100px;
+		background-color:#EEE;
+		float:left;
+		clear:both;
+		height: 300px;
+		width: 100%;
+		position:relative;
+		}
+
+	#grad {
+	  background: -webkit-linear-gradient(left, transparent , #EEE); /* For Safari 5.1 to 6.0 */
+	  background: -o-linear-gradient(right, transparent, #EEE); /* For Opera 11.1 to 12.0 */
+	  background: -moz-linear-gradient(right, transparent, #EEE); /* For Firefox 3.6 to 15 */
+	  background: linear-gradient(to right, transparent , #EEE); /* Standard syntax */
+	  width: 50px;
+	  height: 100%;
+	  float:right;
+	} 
+	#draw {
+		border: 1px solid #AAA;
+		background: #EEE;
+		}
+	</style>
+</head>
+	<div class="drag-conteiner">
+		<div class="drag">
+			<div id="grad"></div>
+		</div>
+	</div>
+
+
+	<!-- canvas id="draw" width="680" height="300"></canvas -->
+</body>
+<script src="js/jquery-1.11.3.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.event.drag-2.2.js"></script>
+
+<script type="text/javascript">
+
+	jQuery(function($){
+		$('.drag').drag(function( ev, dd ){
+
+			var maxTop = $('.drag-conteiner').height() - $('.drag').height();
+			var topContainer = Math.round($('.drag-conteiner').offset().top);
+			var minTop = topContainer;
+
+			if(dd.offsetY > maxTop)
+				totalTop = maxTop;
+			else if(dd.offsetY < minTop)
+				totalTop = minTop;
+			else
+				totalTop = dd.offsetY;
+
+			totalTop = totalTop + topContainer;
+
+			$( this ).css({
+				top: totalTop,
+				width: dd.offsetX,
+			});
+		});
+	});
+
+/*
+	jQuery(function($){
+		var canvas = $('#draw')[0].getContext('2d');
+		canvas.strokeStyle = "#137";
+		canvas.lineCap = 'round';
+		canvas.lineWidth = 5;
+		canvas.beginPath();
+		$('#draw')
+			.drag("start",function( ev, dd ){
+				canvas.moveTo( 
+					ev.pageX - dd.originalX,
+					ev.pageY - dd.originalY
+				);
+			})
+			.drag(function( ev, dd ){	
+				canvas.lineTo(
+					ev.pageX - dd.originalX,
+					ev.pageY - dd.originalY
+				);
+				canvas.clearRect(0,0,680,300);
+				canvas.stroke(); 
+			});
+	});
+	*/
+</script>
+
+</html>
