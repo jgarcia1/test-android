@@ -32,6 +32,13 @@ $(".step").click(function(){
 	}
 });
 
+$(".amb a").click(function(){
+	var anchoImagen = $(this).children("img").width();
+	var anchoNuevo = parseInt(anchoImagen) + 20;
+	$(this).children("img").stop().css({'position':"absolute"}, 300);
+	$(this).children("img").stop().animate({'width':anchoNuevo,'left':"-10%"}, 300);
+});
+
 $(".hs .btn-max").click(function(){
 	val = $(this).parent().children(".form-control").val();
 	if(val < 6)
