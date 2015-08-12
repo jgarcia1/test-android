@@ -5,11 +5,11 @@ $(".step").click(function(){
 	
 	switch(ir){
 		case 'empezar':
-			$('#bienvenida').fadeOut('slow');
+			$('#bienvenida').fadeOut(500);
 			setTimeout(function(){
-				$('#empezar').fadeIn('slow');
+				$('#empezar').fadeIn(300);
 				$('.logo').addClass('blur');
-			}, 300);
+			}, 500);
 			setTimeout(function(){
 				$('#empezar .full-alert').fadeOut();
 				$('.logo').removeClass('blur');
@@ -18,11 +18,11 @@ $(".step").click(function(){
 		break;
 
 		case 'amb':
-			$('#empezar').fadeOut('slow');
+			$('#empezar').fadeOut(500);
 			setTimeout(function(){
-				$('#amb').fadeIn('slow');
+				$('#amb').fadeIn(300);
 				$('.logo').addClass('blur');
-			}, 300);
+			}, 500);
 			setTimeout(function(){
 				$('#amb .full-alert').fadeOut();
 				$('.logo').removeClass('blur');
