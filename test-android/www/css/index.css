@@ -1,35 +1,49 @@
-body{
-    margin-top:30px;
+@font-face{
+   font-family: "roboto-light";
+   font-style: normal;
+   font-weight: normal;
+   src: url(../fonts/roboto-light.ttf) format("truetype");
 }
+
+body{
+    margin-top: 50px;
+    background-color: #F2F0E3;
+    font-family: roboto-light;
+}
+
+a, a:hover, a:focus, a:active, a:visited{
+  color:#333;
+  text-decoration: none;
+}
+
 .time-input .btn-max{
-    border-bottom:0px;
+    border-bottom: 0px;
     border-radius: 4px 4px 0px 0px;
 }
 
 .time-input .btn-min{
-    border-top:0px;
+    border-top: 0px;
     border-radius: 0px 0px 4px 4px;
 }
 
 .time-input input{
-    border-radius:0;
-    font-size:40px;
+    border-radius: 0;
+    font-size: 40px;
     height: auto;
 }
 
 .logo{
-    background-color: #fff;
-    margin:0px;
+    margin: 0px;
 }
 
 .logo img{
     max-width: 321px;
-    max-height: 372px; 
+    max-height: 372px;
 }
 
 .logo-inicial{
-    position:absolute;
-    z-index:100;
+    position: absolute;
+    z-index: 100;
     width: 100%;
     height: 100vh;
 }
@@ -61,4 +75,114 @@ body{
             -ms-flex-pack : center;
   -webkit-justify-content : center;
           justify-content : center;
+}
+
+.btn-primary {
+  color: #333;
+  background-color: #818181;
+  border-color: #818181;
+  padding-top:30px;
+  padding-bottom:30px;
+}
+.btn-primary:focus,
+.btn-primary.focus {
+  color: #333;
+  background-color: #286090;
+  border-color: #122b40;
+}
+.btn-primary:hover {
+  color: #333;
+  background-color: #818181;
+  border-color: #818181;
+}
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+  color: #333;
+  background-color: #F06650;
+  border-color: #F06650;
+}
+.btn-primary:active:hover,
+.btn-primary.active:hover,
+.open > .dropdown-toggle.btn-primary:hover,
+.btn-primary:active:focus,
+.btn-primary.active:focus,
+.open > .dropdown-toggle.btn-primary:focus,
+.btn-primary:active.focus,
+.btn-primary.active.focus,
+.open > .dropdown-toggle.btn-primary.focus {
+  color: #333;
+  background-color: #818181;
+  border-color: #818181;
+}
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+  background-image: none;
+}
+.btn-primary.disabled,
+.btn-primary[disabled],
+fieldset[disabled] .btn-primary,
+.btn-primary.disabled:hover,
+.btn-primary[disabled]:hover,
+fieldset[disabled] .btn-primary:hover,
+.btn-primary.disabled:focus,
+.btn-primary[disabled]:focus,
+fieldset[disabled] .btn-primary:focus,
+.btn-primary.disabled.focus,
+.btn-primary[disabled].focus,
+fieldset[disabled] .btn-primary.focus,
+.btn-primary.disabled:active,
+.btn-primary[disabled]:active,
+fieldset[disabled] .btn-primary:active,
+.btn-primary.disabled.active,
+.btn-primary[disabled].active,
+fieldset[disabled] .btn-primary.active {
+  background-color: #818181;
+  border-color: #818181;
+}
+.btn-primary .badge {
+  color: #818181;
+  background-color: #333;
+}
+
+.form-control{
+  background-color:#818181;
+  color:#FFF;
+}
+
+.form-control:focus{
+  border-color: #F06650;
+  outline: 0px none;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px rgba(240, 102, 80, 0.6);
+}
+
+.time-input .btn{
+  background-color:transparent;
+  border:none;
+}
+
+.full-alert{
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top:0;
+  left:0;
+  color:#FFF;
+  z-index:999999;
+}
+
+.bg-opacity{
+  background-color: #000;
+  opacity:0.4;
+}
+
+.blur{
+  -webkit-filter: blur(2px); /* Chrome, Opera, etc. */
+  filter: url('blur.svg#blur'); /* Older FF and others - http://jordanhollinger.com/media/blur.svg */
+  filter: blur(2px); /* Firefox 35+, eventually all */
+}
+
+.display-none{
+  display:none;
 }
