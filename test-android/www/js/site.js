@@ -5,7 +5,7 @@ $(".step").click(function(){
 	
 	switch(ir){
 		case 'empezar':
-			$('#bienvenida').fadeOut(500);
+			$('.seccion').fadeOut(500);
 			setTimeout(function(){
 				$('#empezar').fadeIn(300);
 				$('.logo').addClass('blur');
@@ -18,7 +18,7 @@ $(".step").click(function(){
 		break;
 
 		case 'amb':
-			$('#empezar').fadeOut(500);
+			$('.seccion').fadeOut(500);
 			setTimeout(function(){
 				$('#amb').fadeIn(300);
 				$('.logo').addClass('blur');
@@ -29,14 +29,40 @@ $(".step").click(function(){
 				$('#amb .row').removeClass('blur');
 			}, 3000);
 		break;
+
+		case 'bosque':
+			$('#amb-options').fadeIn(300);
+			$('.logo').addClass('blur');
+			$('#amb .row').addClass('blur');
+			$('#amb-options .row').removeClass('blur');
+		break;
 	}
 });
 
 $(".amb a").click(function(){
-	var anchoImagen = $(this).children("img").width();
+	var contenedor = $(this).children("img");
+	var anchoImagen = $(contenedor).width();
 	var anchoNuevo = parseInt(anchoImagen) + 20;
-	$(this).children("img").stop().css({'position':"absolute"}, 300);
-	$(this).children("img").stop().animate({'width':anchoNuevo,'left':"-10%"}, 300);
+
+	$(contenedor).css({'position':"absolute",'z-index':"100"});
+	$(contenedor).stop().animate({'width':anchoNuevo,'left':"-10%",top:'-10%'}, 300).animate({'width':anchoImagen,'left':"0",top:'0'}, 300);
+
+	setTimeout(function(){
+		$(contenedor).removeAttr("style");
+	}, 600);
+
+});
+
+$(".option").click(function() {
+	var enlace = $(this).parent();
+	var option = $(enlace).data('option');
+
+	if(option == 1)
+		$(enlace).data('option','0');
+	else
+		$(enlace).data('option','1');
+
+	$(this).children('img.top').toggleClass("transparent");
 });
 
 $(".hs .btn-max").click(function(){
