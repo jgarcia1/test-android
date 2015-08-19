@@ -6,7 +6,7 @@ $(".step").click(function(){
 	switch(ir){
 		case 'bienvenida':
 			$('.seccion').fadeOut(500);
-			$('#back-button').addClass('display-none');
+			$('#back-button').hide;
 			setTimeout(function(){
 				$('#bienvenida').fadeIn(300);
 				$('.logo').removeClass('blur');
@@ -39,6 +39,7 @@ $(".step").click(function(){
 			setTimeout(function(){
 				$('#amb').fadeIn(300);
 				$('.logo').addClass('blur');
+				$('#amb .row').addClass('blur');
 			}, 500);
 			setTimeout(function(){
 				$('#amb .full-alert').fadeOut();
@@ -48,35 +49,41 @@ $(".step").click(function(){
 		break;
 
 		case 'bosque':
-			$('#back-button').data('go','amb');//Ir al anterior
-			$('#amb-options').fadeIn(300);
-			$('.logo').addClass('blur');
-			$('#amb .row').addClass('blur');
-			$('#amb-options .row').removeClass('blur');
-		break;
-
 		case 'playa':
-			$('#back-button').data('go','amb');//Ir al anterior
-			$('#amb-options').fadeIn(300);
-			$('.logo').addClass('blur');
-			$('#amb .row').addClass('blur');
-			$('#amb-options .row').removeClass('blur');
-		break;
-
 		case 'oceano':
-			$('#back-button').data('go','amb');//Ir al anterior
-			$('#amb-options').fadeIn(300);
-			$('.logo').addClass('blur');
-			$('#amb .row').addClass('blur');
-			$('#amb-options .row').removeClass('blur');
-		break;
-
 		case 'universo':
 			$('#back-button').data('go','amb');//Ir al anterior
 			$('#amb-options').fadeIn(300);
 			$('.logo').addClass('blur');
 			$('#amb .row').addClass('blur');
 			$('#amb-options .row').removeClass('blur');
+		break;
+
+		case 'recorrido':
+			var luz = $('#opt-luz').data('option');
+			var sonido = $('#opt-sonido').data('option');
+			var aroma = $('#opt-aroma').data('option');
+
+			if(luz == 0 && sonido == 0 && aroma == 0)
+			{
+				alert('Debe seleccionar una característica al menos');
+				return false;
+			}
+
+			$('.seccion').fadeOut(500);
+			$('#amb .full-alert').fadeIn();
+			$('#amb-options').hide();
+			$('#back-button').data('go','empezar');//Ir al anterior
+			setTimeout(function(){
+				$('#amb').fadeIn(300);
+				$('.logo').addClass('blur');
+				$('#amb .row').addClass('blur');
+			}, 500);
+			setTimeout(function(){
+				$('#amb .full-alert').fadeOut();
+				$('.logo').removeClass('blur');
+				$('#amb .row').removeClass('blur');
+			}, 3000);
 		break;
 	}
 });
