@@ -53,8 +53,31 @@ a, a:hover, a:focus, a:active, a:visited{
     left:0;
 }
 
+#back-button{
+  position:absolute;
+  left:2%;
+  top:2%;
+  z-index:9999;
+  padding:3px;
+  padding-bottom: 0px;
+  width: auto;
+  font-size:30px;
+  text-align: center;
+  background-color:#CCC;
+  color:#333;
+}
+
+#back-button:active{
+  background-color:#F06650;
+}
+
 .oculto{
     display:none;
+}
+
+.container{
+  padding-left: 0px;
+  padding-right: 0px;
 }
 
 .vertical-center {
@@ -176,7 +199,7 @@ fieldset[disabled] .btn-primary.active {
   top:0;
   left:0;
   color:#FFF;
-  z-index:999999;
+  z-index:1000;
 }
 
 .full-alert .message{
@@ -203,6 +226,11 @@ fieldset[disabled] .btn-primary.active {
 
 .display-none{
   display:none;
+}
+
+.amb-conteiner{
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .amb .amb-top, 

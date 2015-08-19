@@ -4,11 +4,25 @@ $(".step").click(function(){
 	var ir = $(this).data('go');
 	
 	switch(ir){
+		case 'bienvenida':
+			$('.seccion').fadeOut(500);
+			$('#back-button').addClass('display-none');
+			setTimeout(function(){
+				$('#bienvenida').fadeIn(300);
+				$('.logo').removeClass('blur');
+			}, 500);
+		break;
+
+
 		case 'empezar':
 			$('.seccion').fadeOut(500);
+			$('#back-button').data('go','bienvenida');//Ir al anterior
 			setTimeout(function(){
-				$('#empezar').fadeIn(300);
+				$('#back-button').fadeIn();
 				$('.logo').addClass('blur');
+				$('#empezar').fadeIn(300);
+				$('#empezar .row').addClass('blur');
+				$('#empezar .full-alert').show();
 			}, 500);
 			setTimeout(function(){
 				$('#empezar .full-alert').fadeOut();
@@ -19,6 +33,9 @@ $(".step").click(function(){
 
 		case 'amb':
 			$('.seccion').fadeOut(500);
+			$('#amb .full-alert').fadeIn();
+			$('#amb-options').hide();
+			$('#back-button').data('go','empezar');//Ir al anterior
 			setTimeout(function(){
 				$('#amb').fadeIn(300);
 				$('.logo').addClass('blur');
@@ -31,6 +48,31 @@ $(".step").click(function(){
 		break;
 
 		case 'bosque':
+			$('#back-button').data('go','amb');//Ir al anterior
+			$('#amb-options').fadeIn(300);
+			$('.logo').addClass('blur');
+			$('#amb .row').addClass('blur');
+			$('#amb-options .row').removeClass('blur');
+		break;
+
+		case 'playa':
+			$('#back-button').data('go','amb');//Ir al anterior
+			$('#amb-options').fadeIn(300);
+			$('.logo').addClass('blur');
+			$('#amb .row').addClass('blur');
+			$('#amb-options .row').removeClass('blur');
+		break;
+
+		case 'oceano':
+			$('#back-button').data('go','amb');//Ir al anterior
+			$('#amb-options').fadeIn(300);
+			$('.logo').addClass('blur');
+			$('#amb .row').addClass('blur');
+			$('#amb-options .row').removeClass('blur');
+		break;
+
+		case 'universo':
+			$('#back-button').data('go','amb');//Ir al anterior
 			$('#amb-options').fadeIn(300);
 			$('.logo').addClass('blur');
 			$('#amb .row').addClass('blur');
