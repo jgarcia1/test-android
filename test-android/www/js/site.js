@@ -48,11 +48,18 @@ $(".step").click(function(){
 			}, 3000);
 		break;
 
+		case 'close-option':
+			$('#back-button').data('go','empezar');//Ir al anterior
+			$('.logo').removeClass('blur');
+			$('#amb .row').removeClass('blur');
+			$('#amb-options').fadeOut();
+		break;
+
 		case 'bosque':
 		case 'playa':
 		case 'oceano':
 		case 'universo':
-			$('#back-button').data('go','amb');//Ir al anterior
+			$('#back-button').data('go','close-option');//Ir al anterior
 			$('#amb-options').fadeIn(300);
 			$('.logo').addClass('blur');
 			$('#amb .row').addClass('blur');
@@ -60,9 +67,13 @@ $(".step").click(function(){
 		break;
 
 		case 'recorrido':
-			var luz = $('#opt-luz').data('option');
-			var sonido = $('#opt-sonido').data('option');
-			var aroma = $('#opt-aroma').data('option');
+			var luz = $('#amb .opt-luz').data('option');
+			var sonido = $('#amb .opt-sonido').data('option');
+			var aroma = $('#amb .opt-aroma').data('option');
+
+			console.log(luz);
+			console.log(aroma);
+			console.log(sonido);
 
 			if(luz == 0 && sonido == 0 && aroma == 0)
 			{
@@ -70,23 +81,101 @@ $(".step").click(function(){
 				return false;
 			}
 
+			$('#recorrido .opt-luz').data('option',luz);
+			if($('#recorrido .opt-luz').data('option') == 0) $('#recorrido .opt-luz .option').children('img.top').addClass("transparent");
+
+			$('#recorrido .opt-sonido').data('option',sonido);
+			if($('#recorrido .opt-sonido').data('option') == 0) $('#recorrido .opt-sonido .option').children('img.top').addClass("transparent");
+
+			$('#recorrido .opt-aroma').data('option',aroma);
+			if($('#recorrido .opt-aroma').data('option') == 0) $('#recorrido .opt-aroma .option').children('img.top').addClass("transparent");
+
 			$('.seccion').fadeOut(500);
-			$('#amb .full-alert').fadeIn();
-			$('#amb-options').hide();
-			$('#back-button').data('go','empezar');//Ir al anterior
+			//$('#back-button').data('go','empezar');//Ir al anterior
 			setTimeout(function(){
-				$('#amb').fadeIn(300);
-				$('.logo').addClass('blur');
-				$('#amb .row').addClass('blur');
-			}, 500);
-			setTimeout(function(){
-				$('#amb .full-alert').fadeOut();
+				$('#recorrido').fadeIn(300);
 				$('.logo').removeClass('blur');
-				$('#amb .row').removeClass('blur');
-			}, 3000);
+			}, 500);
+		break;
+
+		case 'pause':
+			timer(1);
+			//$('#back-button').data('go','close-option');//Ir al anterior
+			$('#amb-options-paused').fadeIn(300);
+			$('.logo').addClass('blur');
+			$('#recorrido .row').addClass('blur');
+			$('#recorrido .pause').fadeOut(200);
+		break;
+
+		case 'retomar':
+			var luz = $('#recorrido .opt-luz').data('option');
+			var sonido = $('#recorrido .opt-sonido').data('option');
+			var aroma = $('#recorrido .opt-aroma').data('option');
+
+			if(luz == 0 && sonido == 0 && aroma == 0)
+			{
+				alert('Debe seleccionar una característica al menos');
+				return false;
+			}
+
+			timer(0);
+			$('#amb-options-paused').fadeOut(300);
+			$('.logo').removeClass('blur');
+			$('#recorrido .row').removeClass('blur');
+			$('#recorrido .pause').fadeIn(200);
 		break;
 	}
 });
+
+$("#linea").click(function(){
+
+	timer(0);
+
+	$('#recorrido .btn-primary').fadeOut(200);
+
+	setTimeout(function(){
+		$('#recorrido .btn-primary').empty().addClass('pause step').removeClass('btn-primary').fadeIn(200);
+	}, 200);
+});
+
+
+function timer(action){
+	if(action == 0 && $("#timer").data('inicio') != 1)
+	{
+		if( $("#timer").data('inicio') == 0)
+		{
+			var hs  = $("#horas").val();
+			var min = $("#min").val();
+			var	aSeg = ((hs * 60) + parseInt(min)) * 60;
+		}	
+		else if ( $("#timer").data('inicio') == 2)
+		{
+			var aSeg = $("#timer").data('segundos');
+		}
+
+		$("#timer").data('inicio',1);
+
+		var timerValue = Math.floor(aSeg/60) + ":" + (aSeg-Math.floor(aSeg/60)*60);
+
+		$("#timer").html(timerValue);
+
+		inicio = setInterval(function(){
+			aSeg = aSeg - 1;
+
+			var newTimerValue = Math.floor(aSeg/60) + ":" + (aSeg-Math.floor(aSeg/60)*60);
+
+			$("#timer").html(newTimerValue);
+
+			$("#timer").data('segundos',aSeg);
+
+		}, 1000);
+	}
+	else
+	{
+		$("#timer").data('inicio',2);
+		clearInterval(inicio);
+	}
+}
 
 $(".amb a").click(function(){
 	var contenedor = $(this).children("img");
