@@ -69,7 +69,7 @@ $(".step").click(function(){
 		case 'recorrido':
 			var luz = $('#amb-options .opt-luz').data('option');
 			var sonido = $('#amb-options.opt-sonido').data('option');
-			var aroma = $('#amb-options.opt-aroma').data('option');
+			var aroma = $('#amb-options .opt-aroma').data('option');
 
 			if(luz == 0 && sonido == 0 && aroma == 0)
 			{
@@ -80,7 +80,8 @@ $(".step").click(function(){
 			$('.seccion').fadeOut(500);
 			initializeTimer();
 			$('#pause').parent('a').data('go','');
-			$('#pause').show().html('Deslice el dedo para comenzar el recorrido').removeClass('pause step').addClass('btn-primary');
+			$("#timer").data('inicio',0)
+			$('#pause').show().html('Deslice el dedo para comenzar el recorrido').removeClass('circle pause step').addClass('btn-primary');
 			$('#back-button').data('go','parar');//Ir al anterior
 			setTimeout(function(){
 				$('#recorrido').fadeIn(300);
@@ -131,6 +132,9 @@ $(".step").click(function(){
 		break;
 
 		case 'finalizar':
+			$(".estrella").children('span').removeClass('glyphicon-star').addClass('glyphicon-star-empty').removeAttr("style");
+			$("#finalizar .okay").parent().children('h4').show();
+			$("#finalizar .okay").hide();
 			$('#back-button').hide();
 			$('#finalizar').fadeIn(300);
 			$('.logo').addClass('blur');
