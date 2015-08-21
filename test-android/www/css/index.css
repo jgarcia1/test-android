@@ -200,22 +200,12 @@ fieldset[disabled] .btn-primary.active {
   left:0;
   color:#FFF;
   z-index:1000;
+  background-image: url('../img/opacity.png');
 }
 
 .full-alert .message{
   z-index:100;
   text-shadow:1px 1px 0px #555;
-}
-
-.bg-opacity{
-  background-color: #000;
-  opacity:0.4;
-  width: 100%;
-  height: 100vh;
-  position: absolute;
-  top:0;
-  left:0;
-  z-index:-1;
 }
 
 .blur{
@@ -313,13 +303,11 @@ opacity:0;
 
 .circle{
   color:#FFF;
-  width: 100px;
-  height: 100px;
-  border:8px solid #FFF;
-  border-radius:50%;
+  width: 94px;
+  height: 94px;
   background-repeat: no-repeat;
   background-position: center;
-  background-size: auto 55px;
+  background-size:100%;
   display:block;
   margin-left:auto;
   margin-right: auto;
@@ -330,13 +318,11 @@ opacity:0;
 }
 
 .pause{
-  border-color:#000;
   background-image:url(../img/pause.png);
 }
 
 .okay{
-  font-size:45px;
-  padding-top:12px;
+  background-image:url(../img/okay.png);
   display:none;
 }
 
