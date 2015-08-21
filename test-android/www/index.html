@@ -29,7 +29,7 @@
 	</a>
 
 	<div class="container oculto">
-		<div id="bienvenida" class="seccion">	
+		<div id="bienvenida" class="seccion">
 			<div class="row mt-50 mt-sm-140">
 				<div class="col-sm-12 text-center mt-sm-100">
 					<h1>
@@ -85,58 +85,6 @@
 					<h2>Elija la ambientación deseada</h2>
 				</div>
 			</div>
-
-			<!-- Start opciones de ambientacion -->
-			<div id="amb-options" class="full-alert display-none">
-				<div class="bg-opacity"></div>
-				<div class="message mt-20 mt-sm-100">
-					<div class="col-xs-12 text-center mb-50">
-						<h2>Características del ambiente</h2>
-					</div>
-					<div class="col-xs-4 mb-80">
-						<a href="#" class="opt-luz" data-option="1">
-							<div class="option text-right pull-right">
-								<img class="bottom" src="img/luz-off.png" >
-								<img class="top" src="img/luz-on.png" >
-							</div>
-						</a>
-					</div>
-					<div class="col-xs-4 mb-80">
-						<a href="#" class="opt-sonido" data-option="1">
-							<div class="option text-center col-centered">
-								<img class="bottom" src="img/sonido-off.png" >
-								<img class="top" src="img/sonido-on.png" >
-							</div>
-						</a>
-					</div>
-					<div class="col-xs-4 mb-80">
-						<a href="#" class="opt-aroma" data-option="1">
-							<div class="option">
-								<img class="bottom" src="img/aroma-off.png" >
-								<img class="top" src="img/aroma-on.png" >
-							</div>
-						</a>
-					</div>
-					<div class="col-xs-12 mt-50 mb-50">
-						<div class="col-xs-2">
-							<button class="btn btn-lg btn-default pull-right"><span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span></button>
-						</div>
-						<div class="col-xs-8">
-							<input class="form-control input-lg text-center" type="text" value="Sonido de aves"  id="sonidos" name="sonidos" />
-						</div>
-						<div class="col-xs-2">
-							<button class="btn btn-lg btn-default pull-left"><span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span></button>
-						</div>
-					</div>
-					<div class="col-xs-12 text-center mt-10 mt-sm-100">
-						<h4>Toque el icono para desactivar</h4>
-					</div>
-					<div class="col-xs-12 text-center mt-50 mt-sm-100">
-						<a href="#" data-go="recorrido" class="play step"></a>
-					</div>
-				</div>
-			</div>
-			<!-- End opciones de ambientacion -->
 
 			<div class="row mt-sm-100 mt-lg-20 amb-conteiner">
 				<!-- Start Ambiente -->
@@ -233,65 +181,102 @@
 			</div>
 			<div class="row mt-50 mt-sm-100">
 				<div class="col-sm-12 text-center">
-					<a href="#" class="step" data-go="pause">
-						<h4 class="btn-primary">Deslice el dedo para comenzar el recorrido</h4>
+					<a href="#" class="step">
+						<h4 class="btn-primary" id="pause">Deslice el dedo para comenzar el recorrido</h4>
 					</a>
 				</div>
 			</div>
+		</div>
 
-			<!-- Start opciones de ambientacion paused -->
-			<div id="amb-options-paused" class="full-alert display-none">
-				<div class="bg-opacity"></div>
-				<div class="message mt-20 mt-sm-100">
-					<div class="col-xs-12 text-center mb-50">
-						<h2>Características del ambiente</h2>
-					</div>
-					<div class="col-xs-4 mb-80">
-						<a href="#" class="opt-luz" data-option="1">
-							<div class="option text-right pull-right">
-								<img class="bottom" src="img/luz-off.png" >
-								<img class="top" src="img/luz-on.png" >
-							</div>
-						</a>
-					</div>
-					<div class="col-xs-4 mb-80">
-						<a href="#" class="opt-sonido" data-option="1">
-							<div class="option text-center col-centered">
-								<img class="bottom" src="img/sonido-off.png" >
-								<img class="top" src="img/sonido-on.png" >
-							</div>
-						</a>
-					</div>
-					<div class="col-xs-4 mb-80">
-						<a href="#" class="opt-aroma" data-option="1">
-							<div class="option">
-								<img class="bottom" src="img/aroma-off.png" >
-								<img class="top" src="img/aroma-on.png" >
-							</div>
-						</a>
-					</div>
-					<div class="col-xs-12 mt-50 mb-50">
-						<div class="col-xs-2">
-							<button class="btn btn-lg btn-default pull-right"><span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span></button>
+		<!-- Start opciones de ambientacion -->
+		<div id="amb-options" class="seccion full-alert display-none">
+			<div class="bg-opacity"></div>
+			<div class="message mt-20 mt-sm-100">
+				<div class="col-xs-12 text-center mb-50">
+					<h2>Características del ambiente</h2>
+				</div>
+				<div class="col-xs-4 mb-80">
+					<a href="#" class="opt-luz" data-option="1">
+						<div class="option text-right pull-right">
+							<img class="bottom" src="img/luz-off.png" >
+							<img class="top" src="img/luz-on.png" >
 						</div>
-						<div class="col-xs-8">
-							<input class="form-control input-lg text-center" type="text" value="Sonido de aves"  id="sonidos" name="sonidos" />
+					</a>
+				</div>
+				<div class="col-xs-4 mb-80">
+					<a href="#" class="opt-sonido" data-option="1">
+						<div class="option text-center col-centered">
+							<img class="bottom" src="img/sonido-off.png" >
+							<img class="top" src="img/sonido-on.png" >
 						</div>
-						<div class="col-xs-2">
-							<button class="btn btn-lg btn-default pull-left"><span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span></button>
+					</a>
+				</div>
+				<div class="col-xs-4 mb-80">
+					<a href="#" class="opt-aroma" data-option="1">
+						<div class="option">
+							<img class="bottom" src="img/aroma-off.png" >
+							<img class="top" src="img/aroma-on.png" >
 						</div>
+					</a>
+				</div>
+				<div class="col-xs-12 mt-50 mb-50">
+					<div class="col-xs-2">
+						<button class="btn btn-lg btn-default pull-right"><span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span></button>
 					</div>
-					<div class="col-xs-12 text-center mt-10 mt-sm-100">
-						<h4>Toque el icono para desactivar</h4>
+					<div class="col-xs-8">
+						<input class="form-control input-lg text-center" type="text" value="Sonido de aves"  id="sonidos" name="sonidos" />
 					</div>
-					<div class="col-xs-12 text-center mt-50 mt-sm-100">
-						<a href="#" data-go="retomar" class="play step"></a>
+					<div class="col-xs-2">
+						<button class="btn btn-lg btn-default pull-left"><span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span></button>
+					</div>
+				</div>
+				<div class="col-xs-12 text-center mt-10 mt-sm-100">
+					<h4>Toque el icono para desactivar</h4>
+				</div>
+				<div class="col-xs-12 text-center mt-50 mt-sm-130">
+					<a href="#" data-go="recorrido" class="circle play step"></a>
+				</div>
+			</div>
+		</div>
+		<!-- End opciones de ambientacion -->
+
+		<div id="finalizar" class="seccion full-alert display-none">
+			<div class="bg-opacity"></div>
+			<div class="message mt-50 mt-sm-140">
+				<div class="col-xs-12 text-center mb-50 mt-50 mt-sm-140">
+					<h2>Su sesión ha finalizado</h2>
+					<h4>Puntúe su experiencia</h4>
+				</div>
+				<div class="col-xs-12 mt-50">
+					<div class="col-xs-1"></div>
+
+					<div data-punto="1" id="est-1" class="col-xs-2 text-center estrella">
+						<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+					</div>
+					<div data-punto="2" id="est-2" class="col-xs-2 text-center estrella">
+						<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+					</div>
+					<div data-punto="3" id="est-3" class="col-xs-2 text-center estrella">
+						<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+					</div>
+					<div data-punto="4" id="est-4" class="col-xs-2 text-center estrella">
+						<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+					</div>
+					<div data-punto="5" id="est-5" class="col-xs-2 text-center estrella">
+						<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+					</div>
+
+					<div class="col-xs-1"></div>
+				</div>
+
+				<div class="col-xs-12 text-center">
+					<h4>Toque las estrellas para marcar</h4>
+					<div class="circle okay display-none">
+						<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 					</div>
 				</div>
 			</div>
-			<!-- End opciones de ambientacion paused -->
 		</div>
-
 
 	</div>
 </body>

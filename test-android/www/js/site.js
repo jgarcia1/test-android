@@ -1,12 +1,11 @@
 app.initialize();
 
 $(".step").click(function(){
-	var ir = $(this).data('go');
-	
-	switch(ir){
+
+	switch($(this).data('go')){
 		case 'bienvenida':
 			$('.seccion').fadeOut(500);
-			$('#back-button').hide;
+			$('#back-button').hide();
 			setTimeout(function(){
 				$('#bienvenida').fadeIn(300);
 				$('.logo').removeClass('blur');
@@ -36,6 +35,7 @@ $(".step").click(function(){
 			$('#amb .full-alert').fadeIn();
 			$('#amb-options').hide();
 			$('#back-button').data('go','empezar');//Ir al anterior
+			$('#amb-options .play').data('go','recorrido');
 			setTimeout(function(){
 				$('#amb').fadeIn(300);
 				$('.logo').addClass('blur');
@@ -67,13 +67,9 @@ $(".step").click(function(){
 		break;
 
 		case 'recorrido':
-			var luz = $('#amb .opt-luz').data('option');
-			var sonido = $('#amb .opt-sonido').data('option');
-			var aroma = $('#amb .opt-aroma').data('option');
-
-			console.log(luz);
-			console.log(aroma);
-			console.log(sonido);
+			var luz = $('#amb-options .opt-luz').data('option');
+			var sonido = $('#amb-options.opt-sonido').data('option');
+			var aroma = $('#amb-options.opt-aroma').data('option');
 
 			if(luz == 0 && sonido == 0 && aroma == 0)
 			{
@@ -81,36 +77,32 @@ $(".step").click(function(){
 				return false;
 			}
 
-			$('#recorrido .opt-luz').data('option',luz);
-			if($('#recorrido .opt-luz').data('option') == 0) $('#recorrido .opt-luz .option').children('img.top').addClass("transparent");
-
-			$('#recorrido .opt-sonido').data('option',sonido);
-			if($('#recorrido .opt-sonido').data('option') == 0) $('#recorrido .opt-sonido .option').children('img.top').addClass("transparent");
-
-			$('#recorrido .opt-aroma').data('option',aroma);
-			if($('#recorrido .opt-aroma').data('option') == 0) $('#recorrido .opt-aroma .option').children('img.top').addClass("transparent");
-
 			$('.seccion').fadeOut(500);
-			//$('#back-button').data('go','empezar');//Ir al anterior
+			initializeTimer();
+			$('#pause').parent('a').data('go','');
+			$('#pause').show().html('Deslice el dedo para comenzar el recorrido').removeClass('pause step').addClass('btn-primary');
+			$('#back-button').data('go','parar');//Ir al anterior
 			setTimeout(function(){
 				$('#recorrido').fadeIn(300);
 				$('.logo').removeClass('blur');
+				$('#recorrido .row').removeClass('blur');
 			}, 500);
 		break;
-
+		
 		case 'pause':
 			timer(1);
-			//$('#back-button').data('go','close-option');//Ir al anterior
-			$('#amb-options-paused').fadeIn(300);
+			$('#back-button').data('go','retomar');//Ir al anterior
+			$('#amb-options .play').data('go','retomar');
+			$('#amb-options').fadeIn(300);
 			$('.logo').addClass('blur');
 			$('#recorrido .row').addClass('blur');
 			$('#recorrido .pause').fadeOut(200);
 		break;
 
 		case 'retomar':
-			var luz = $('#recorrido .opt-luz').data('option');
-			var sonido = $('#recorrido .opt-sonido').data('option');
-			var aroma = $('#recorrido .opt-aroma').data('option');
+			var luz = $('#amb-options .opt-luz').data('option');
+			var sonido = $('#amb-options .opt-sonido').data('option');
+			var aroma = $('#amb-options .opt-aroma').data('option');
 
 			if(luz == 0 && sonido == 0 && aroma == 0)
 			{
@@ -119,25 +111,48 @@ $(".step").click(function(){
 			}
 
 			timer(0);
-			$('#amb-options-paused').fadeOut(300);
+			$('#back-button').data('go','parar');//Ir al anterior
+			$('#amb-options').fadeOut(300);
 			$('.logo').removeClass('blur');
 			$('#recorrido .row').removeClass('blur');
 			$('#recorrido .pause').fadeIn(200);
+		break;
+
+		case 'parar':
+			if(confirm("¿Realmente quiere salir de esta sesión?"))
+			{
+				timer(1);
+				$('#back-button').data('go','finalizar').click();//Ir al anterior
+			}
+			else
+			{
+				return false;
+			}
+		break;
+
+		case 'finalizar':
+			$('#back-button').hide();
+			$('#finalizar').fadeIn(300);
+			$('.logo').addClass('blur');
+			$('#recorrido .row').addClass('blur');
 		break;
 	}
 });
 
 $("#linea").click(function(){
+	if ($("#timer").data('inicio') == 0)
+	{
+		timer(0);
 
-	timer(0);
+		$('#recorrido .btn-primary').fadeOut(200);
 
-	$('#recorrido .btn-primary').fadeOut(200);
+		$('#pause').parent('a').data('go','pause');
 
-	setTimeout(function(){
-		$('#recorrido .btn-primary').empty().addClass('pause step').removeClass('btn-primary').fadeIn(200);
-	}, 200);
+		setTimeout(function(){
+			$('#recorrido .btn-primary').empty().addClass('circle pause').removeClass('btn-primary').fadeIn(200);
+		}, 200);
+	}
 });
-
 
 function timer(action){
 	if(action == 0 && $("#timer").data('inicio') != 1)
@@ -155,19 +170,36 @@ function timer(action){
 
 		$("#timer").data('inicio',1);
 
-		var timerValue = Math.floor(aSeg/60) + ":" + (aSeg-Math.floor(aSeg/60)*60);
+		var timerValueMin = Math.floor(aSeg/60);
+		var timerValueSec = aSeg-Math.floor(aSeg/60)*60;
+
+		if(timerValueSec.toString().length == 1 || timerValueSec == 0) timerValueSec = "0" + timerValueSec;
+
+		var timerValue = timerValueMin + ":" + timerValueSec;
 
 		$("#timer").html(timerValue);
 
 		inicio = setInterval(function(){
-			aSeg = aSeg - 1;
+			if(aSeg == 0)
+			{
+				clearInterval(inicio);
+				$('#back-button').data('go','finalizar').click();//Terminar la sesion
+			}
+			else
+			{
+				aSeg = aSeg - 1;
 
-			var newTimerValue = Math.floor(aSeg/60) + ":" + (aSeg-Math.floor(aSeg/60)*60);
+				var timerValueMin = Math.floor(aSeg/60);
+				var timerValueSec = aSeg-Math.floor(aSeg/60)*60;
 
-			$("#timer").html(newTimerValue);
+				if(timerValueSec.toString().length == 1 || timerValueSec == 0) timerValueSec = "0" + timerValueSec;
 
-			$("#timer").data('segundos',aSeg);
+				var newTimerValue = timerValueMin + ":" + timerValueSec;
 
+				$("#timer").html(newTimerValue);
+
+				$("#timer").data('segundos',aSeg);
+			}
 		}, 1000);
 	}
 	else
@@ -176,6 +208,35 @@ function timer(action){
 		clearInterval(inicio);
 	}
 }
+
+function initializeTimer(){
+	var hs  = $("#horas").val();
+	var min = $("#min").val();
+	var	aSeg = ((hs * 60) + parseInt(min)) * 60;
+	var timerValueMin = Math.floor(aSeg/60);
+	var timerValueSec = aSeg-Math.floor(aSeg/60)*60;
+
+	if(timerValueSec.toString().length == 1 || timerValueSec == 0) timerValueSec = "0" + timerValueSec;
+
+	var timerValue = timerValueMin + ":" + timerValueSec;
+
+	$("#timer").html(timerValue);
+}
+
+$(".estrella").click(function(){
+	var punto = $(this).data('punto');
+
+	for(i=1;i<=punto;i++){
+		$("#est-"+i).children('span').removeClass('glyphicon-star-empty').addClass('glyphicon-star').stop().css({"color":'#FFF'},200);
+	}
+
+	$("#finalizar .okay").parent().children('h4').hide();
+	$("#finalizar .okay").fadeIn(300);
+
+	setTimeout(function(){
+		$('#back-button').data('go','bienvenida').click();
+	}, 1000);
+});
 
 $(".amb a").click(function(){
 	var contenedor = $(this).children("img");
@@ -253,7 +314,6 @@ $('.hs input').focusout(function(){
 		$(this).parent().children(".btn-min").attr('disabled',false);
 });
 
-
 $(".min .btn-max").click(function(){
 	val = $(this).parent().children(".form-control").val();
 	if(val == 0)
@@ -274,7 +334,6 @@ $(".min .btn-max").click(function(){
 		$(this).attr('disabled',true);
 	}
 });
-
 
 $(".min .btn-min").click(function(){
 	val = $(this).parent().children(".form-control").val();
