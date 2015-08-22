@@ -69,7 +69,7 @@ $(".step").click(function(){
 
 		case 'recorrido':
 			var luz = $('#amb-options .opt-luz').data('option');
-			var sonido = $('#amb-options.opt-sonido').data('option');
+			var sonido = $('#amb-options .opt-sonido').data('option');
 			var aroma = $('#amb-options .opt-aroma').data('option');
 
 			if(luz == 0 && sonido == 0 && aroma == 0)
@@ -244,16 +244,18 @@ $(".estrella").click(function(){
 });
 
 $(".amb a").click(function(){
-	var contenedor = $(this).children("img");
+	var contenedor  = $(this).children("img");
 	var anchoImagen = $(contenedor).width();
-	var anchoNuevo = parseInt(anchoImagen) + 20;
+	var altoImagen  = $(contenedor).height();
+	var anchoNuevo  = parseInt(anchoImagen) + 20;
+	var altoNuevo   = parseInt(altoImagen) + 20;
 
 	$(contenedor).css({'position':"absolute",'z-index':"100"});
-	$(contenedor).stop().animate({'width':anchoNuevo,'left':"-10%",top:'-10%'}, 300).animate({'width':anchoImagen,'left':"0",top:'0'}, 300);
+	$(contenedor).stop().animate({'width':anchoNuevo,'height':altoNuevo,'left':"-10%",top:'-10%'}, 300).animate({'width':anchoImagen,'height':altoImagen,'left':"0",top:'0'}, 300);
 
 	setTimeout(function(){
 		$(contenedor).removeAttr("style");
-	}, 600);
+	}, 700);
 
 });
 

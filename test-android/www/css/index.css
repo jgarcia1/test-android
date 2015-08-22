@@ -240,6 +240,10 @@ fieldset[disabled] .btn-primary.active {
   padding:0px;
   border:2px solid #818181;
   height:100%;
+  min-height: 124px;
+}
+
+.amb img{
   min-height: 120px;
 }
 
@@ -293,6 +297,7 @@ fieldset[disabled] .btn-primary.active {
   position:relative;
   width: 80px;
 }
+
 .option img {
   max-height: 80px;
   position:absolute;
