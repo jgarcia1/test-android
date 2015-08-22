@@ -4,6 +4,7 @@ $(".step").click(function(){
 
 	switch($(this).data('go')){
 		case 'bienvenida':
+			$('#back-button').data('go','salir');
 			$('.seccion').fadeOut(500);
 			$('#back-button').hide();
 			setTimeout(function(){
@@ -393,7 +394,28 @@ $(window).load(function(){
 	}, 1300);
 });
 
+fullAlert();
+
+$(window).resize(function(){
+	fullAlert();
+});
+
+function fullAlert(){
+	$('.full-alert').css({
+		height: $(window).height()
+	});
+}
+
 document.addEventListener("backbutton", onBackKeyDown, false);
 function onBackKeyDown() {
-	navigator.app.exitApp();
+
+	var action = $('#back-button').data('go');
+
+	if(action == 'salir'){
+		navigator.app.exitApp();
+	}
+	else
+	{
+		$('#back-button').click();
+	}
 }
