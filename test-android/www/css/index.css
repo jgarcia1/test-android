@@ -234,17 +234,22 @@ fieldset[disabled] .btn-primary.active {
   padding-right: 15px;
 }
 
+.amb{
+  padding-left:5px;
+  padding-right:5px;
+}
+
 .amb .amb-top, 
 .amb .amb-bot{
   background-color:#818181;
   padding:0px;
   border:2px solid #818181;
   height:100%;
-  min-height: 124px;
+  min-height: 134px;
 }
 
 .amb img{
-  min-height: 120px;
+  min-height: 130px;
 }
 
 .amb .amb-bot{

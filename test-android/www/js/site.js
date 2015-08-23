@@ -268,6 +268,11 @@ $(".option").click(function() {
 	else
 		$(enlace).data('option','1');
 
+	if($('.opt-sonido').data('option') == 0)
+		$('#amb-options .form-sonidos').animate({opacity:0});
+	else
+		$('#amb-options .form-sonidos').animate({opacity:1});
+
 	$(this).children('img.top').toggleClass("transparent");
 });
 
