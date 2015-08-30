@@ -5,6 +5,12 @@
    src: url(../fonts/roboto-light.ttf) format("truetype");
 }
 
+@media (min-width: 740px){
+  .container {
+      width: 100%;
+  }
+}
+  
 body{
     margin-top: 50px;
     background-color: #F2F0E3;
@@ -101,8 +107,8 @@ a, a:hover, a:focus, a:active, a:visited{
 }
 
 .btn-conteiner{
-  position:absolute; 
-  bottom:10%;
+  //position:absolute; 
+  //bottom:10%;
   left:0px;
 }
 
@@ -224,12 +230,12 @@ fieldset[disabled] .btn-primary.active {
   z-index:100;
   text-shadow:1px 1px 0px #555;
 }
-
+/*
 .blur{
-  -webkit-filter: blur(2px); /* Chrome, Opera, etc. */
-  filter: url('../res/blur.svg#blur'); /* Older FF and others - http://jordanhollinger.com/media/blur.svg */
-  filter: blur(2px); /* Firefox 35+, eventually all */
-}
+  -webkit-filter: blur(2px);
+  filter: url('../res/blur.svg#blur'); 
+  filter: blur(2px); 
+}*/
 
 .display-none{
   display:none;
@@ -261,7 +267,7 @@ fieldset[disabled] .btn-primary.active {
 @media (min-width: 767px) {
   .amb .amb-top, 
   .amb .amb-bot{
-    min-height: 170px;
+    min-height: 182px;
   }
 }
 
@@ -375,9 +381,9 @@ opacity:0;
 }
 
 @media (min-width: 1000px) {
-  #recorrido .btn-conteiner{
+  /*#recorrido .btn-conteiner{
     display:none;
-  }
+  }*/
 }
 
 @media (max-width: 650px) { 

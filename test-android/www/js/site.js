@@ -411,8 +411,7 @@ $(window).load(function(){
 });
 
 fullAlert();
-
-
+//btnTop();
 
 $(window).resize(function(){
 	fullAlert();
@@ -433,6 +432,14 @@ function fullAlert(){
 	$('.full-alert').css({
 		height: $(window).height()
 	});
+}
+
+function btnTop(){
+	var newTop = $(window).height();
+		newTop = parseInt(newTop) - ( (parseInt(newTop) * 15) / 100 );
+
+		console.log(newTop);
+	$('.btn-conteiner').css({top:newTop});
 }
 
 document.addEventListener("backbutton", onBackKeyDown, false);
