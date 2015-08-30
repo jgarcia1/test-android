@@ -22,12 +22,14 @@ $(".step").click(function(){
 				$('.logo').addClass('blur');
 				$('#empezar').fadeIn(300);
 				$('#empezar .row').addClass('blur');
+				$('#empezar .btn-conteiner').addClass('blur');
 				$('#empezar .full-alert').show();
 			}, 500);
 			setTimeout(function(){
 				$('#empezar .full-alert').fadeOut();
 				$('.logo').removeClass('blur');
 				$('#empezar .row').removeClass('blur');
+				$('#empezar .btn-conteiner').removeClass('blur');
 			}, 3000);
 		break;
 
@@ -98,7 +100,7 @@ $(".step").click(function(){
 			$('#amb-options').fadeIn(300);
 			$('.logo').addClass('blur');
 			$('#recorrido .row').addClass('blur');
-			$('#recorrido .pause').fadeOut(200);
+			$('#recorrido .pause').hide();
 		break;
 
 		case 'retomar':
@@ -140,6 +142,7 @@ $(".step").click(function(){
 			$('#finalizar').fadeIn(300);
 			$('.logo').addClass('blur');
 			$('#recorrido .row').addClass('blur');
+			$('#recorrido .pause').hide();
 		break;
 	}
 });
@@ -389,10 +392,16 @@ $('.min input').focusout(function(){
 });
 
 $(window).load(function(){
+
+	if($(window).width() > 1000)
+		var anchoLogo = 150;
+	else
+		var anchoLogo = 270;
+
 	setTimeout(function(){
 		$('.logo').addClass( "logo-cargado" );
-		$('.logo').animate({"height":200},300);
-		$('.logo div').animate({"height":200},300);
+		$('.logo').stop().animate({"height":anchoLogo},300);
+		$('.logo div').stop().animate({"height":anchoLogo},300);
 		$('.logo').removeClass( "logo-inicial" );
 		
 	}, 1000);
@@ -403,9 +412,22 @@ $(window).load(function(){
 
 fullAlert();
 
+
+
 $(window).resize(function(){
 	fullAlert();
+	ajustarLogo();
 });
+
+function ajustarLogo(){
+	if($(window).width() > 1000)
+		var anchoLogo = 150;
+	else
+		var anchoLogo = 270;
+
+	$('.logo').stop().animate({"height":anchoLogo},300);
+	$('.logo div').stop().animate({"height":anchoLogo},300);
+}
 
 function fullAlert(){
 	$('.full-alert').css({

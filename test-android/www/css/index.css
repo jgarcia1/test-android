@@ -37,8 +37,8 @@ a, a:hover, a:focus, a:active, a:visited{
 }
 
 .logo img{
-    max-width: 321px;
-    max-height: 372px;
+    max-width: 449px;
+    max-height: 500px;
 }
 
 .logo-inicial{
@@ -98,6 +98,12 @@ a, a:hover, a:focus, a:active, a:visited{
             -ms-flex-pack : center;
   -webkit-justify-content : center;
           justify-content : center;
+}
+
+.btn-conteiner{
+  position:absolute; 
+  bottom:10%;
+  left:0px;
 }
 
 .btn, .btn:hover, .btn:active, .btn:focus, .btn:disabled, .btn-default:active:focus, .btn-default:active:hover{
@@ -221,7 +227,7 @@ fieldset[disabled] .btn-primary.active {
 
 .blur{
   -webkit-filter: blur(2px); /* Chrome, Opera, etc. */
-  filter: url('blur.svg#blur'); /* Older FF and others - http://jordanhollinger.com/media/blur.svg */
+  filter: url('../res/blur.svg#blur'); /* Older FF and others - http://jordanhollinger.com/media/blur.svg */
   filter: blur(2px); /* Firefox 35+, eventually all */
 }
 
@@ -250,6 +256,13 @@ fieldset[disabled] .btn-primary.active {
 
 .amb img{
   min-height: 130px;
+}
+
+@media (min-width: 767px) {
+  .amb .amb-top, 
+  .amb .amb-bot{
+    min-height: 170px;
+  }
 }
 
 .amb .amb-bot{
@@ -293,7 +306,6 @@ fieldset[disabled] .btn-primary.active {
 }
 
 .amb h3{
-  padding-top:23px;
   padding-bottom:35px;
   text-align: center;
 }
@@ -356,4 +368,21 @@ opacity:0;
   color:#444;
   font-size:60px;
   font-weight: lighter;
+}
+
+#recorrido .btn-conteiner{
+  display:inline;
+}
+
+@media (min-width: 1000px) {
+  #recorrido .btn-conteiner{
+    display:none;
+  }
+}
+
+@media (max-width: 650px) { 
+  .logo img{
+    max-width: 321px;
+    max-height: 372px;
+  }
 }
