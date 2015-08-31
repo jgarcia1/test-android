@@ -395,6 +395,8 @@ $(window).load(function(){
 
 	if($(window).width() > 1000)
 		var anchoLogo = 150;
+	else if($(window).width() <= 610)
+		var anchoLogo = 200;
 	else
 		var anchoLogo = 270;
 
