@@ -59,6 +59,14 @@ a, a:hover, a:focus, a:active, a:visited{
     left:0;
 }
 
+.logo-cargado img{
+    max-width: 180px;
+    -webkit-transition: max-width 0.5s;
+    -moz-transition: max-width 0.5s;
+    -o-transition: max-width 0.5s;
+    transition: max-width 0.5s;
+}
+
 #back-button{
   position:absolute;
   left:2%;

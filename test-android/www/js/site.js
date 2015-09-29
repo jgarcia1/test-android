@@ -393,17 +393,25 @@ $('.min input').focusout(function(){
 
 $(window).load(function(){
 
+	//Tamaño original 449x685
+	
 	if($(window).width() > 1000)
-		var anchoLogo = 150;
+	{
+		var altoLogo = 150;
+	}
 	else if($(window).width() <= 610)
-		var anchoLogo = 200;
+	{
+		var altoLogo = 200;
+	}
 	else
-		var anchoLogo = 270;
+	{
+		var altoLogo = 270;
+	}
 
 	setTimeout(function(){
 		$('.logo').addClass( "logo-cargado" );
-		$('.logo').stop().animate({"height":anchoLogo},300);
-		$('.logo div').stop().animate({"height":anchoLogo},300);
+		$('.logo').stop().animate({"height":altoLogo},300);
+		$('.logo div').stop().animate({"height":altoLogo},300);
 		$('.logo').removeClass( "logo-inicial" );
 		
 	}, 1000);
