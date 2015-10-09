@@ -17,23 +17,23 @@
 	<style>
 	@keyframes animatedBackground {
 		0% { background-position: 0 0; }
-		100% { background-position: -300px 0; }
+		100% { background-position: -1600px 0; }
 	}
 	@-moz-keyframes animatedBackground {
 		0% { background-position: 0 0; }
-		100% { background-position: -300px 0; }
+		100% { background-position: -1600px 0; }
 	}
 	@-webkit-keyframes animatedBackground {
 		0% { background-position: 0 0; }
-		100% { background-position: -300px 0; }
+		100% { background-position: -1600px 0; }
 	}
 	@-ms-keyframes animatedBackground {
 		0% { background-position: 0 0; }
-		100% { background-position: -300px 0; }
+		100% { background-position: -1600px 0; }
 	}
 	@-o-keyframes animatedBackground {
 		0% { background-position: 0 0; }
-		100% { background-position: -300px 0; }
+		100% { background-position: -1600px 0; }
 	}
 	.drag {
 		position: absolute;
@@ -41,51 +41,86 @@
 		height: 58px;
 		width: 58px;
 		cursor: move;
-		top: 120px;
+		top: 40px;
 		min-width: 50px;
-		background-image: url(img/line.jpg);
+		background-image: url(img/line.png);
 		background-repeat: repeat-x;
 		background-position: 100% 0;
+		z-index: 999;
 
-		animation: animatedBackground 2s linear infinite;
-		-moz-animation: animatedBackground 2s linear infinite;
-		-webkit-animation: animatedBackground 2s linear infinite;
-		-ms-animation: animatedBackground 2s linear infinite;
-		-o-animation: animatedBackground 2s linear infinite;
+		animation: animatedBackground 10s linear infinite;
+		-moz-animation: animatedBackground 10s linear infinite;
+		-webkit-animation: animatedBackground 10s linear infinite;
+		-ms-animation: animatedBackground 10s linear infinite;
+		-o-animation: animatedBackground 10s linear infinite;
+
+		-webkit-animation-play-state: paused; /* Chrome, Safari, Opera */
+    	animation-play-state: paused;
 		}
 
 	.drag-conteiner {
 		//margin-top:100px;
-		background-color:#EEE;
+		background-color:#F1EFE2;
 		float:left;
 		clear:both;
-		height: 300px;
+		height: 165px;
 		width: 100%;
 		position:relative;
 		}
 
 	#grad {
-	  background: -webkit-linear-gradient(left, transparent , #EEE); /* For Safari 5.1 to 6.0 */
-	  background: -o-linear-gradient(right, transparent, #EEE); /* For Opera 11.1 to 12.0 */
-	  background: -moz-linear-gradient(right, transparent, #EEE); /* For Firefox 3.6 to 15 */
-	  background: linear-gradient(to right, transparent , #EEE); /* Standard syntax */
+	  background: -webkit-linear-gradient(left, transparent , #F1EFE2); /* For Safari 5.1 to 6.0 */
+	  background: -o-linear-gradient(right, transparent, #F1EFE2); /* For Opera 11.1 to 12.0 */
+	  background: -moz-linear-gradient(right, transparent, #F1EFE2); /* For Firefox 3.6 to 15 */
+	  background: linear-gradient(to right, transparent , #F1EFE2); /* Standard syntax */
 	  width: 50px;
 	  height: 100%;
 	  float:right;
-	} 
+	}
+
 	#draw {
 		border: 1px solid #AAA;
 		background: #EEE;
-		}
+	}
+
+	.drag-conteiner .animaciones {
+		display: none;
+		//position: absolute;
+		margin-left: auto;
+		margin-right: auto;
+		text-align: center;
+		z-index: 998;
+	}
+
 	</style>
 </head>
+	
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 	<div class="drag-conteiner">
 		<div class="drag">
 			<div id="grad"></div>
 		</div>
+		<div class="animaciones"><img src="" height="100%" /></div>
 	</div>
 
-
+	<a href="#" class="pausar">Pausar</a>
 	<!-- canvas id="draw" width="680" height="300"></canvas -->
 </body>
 <script src="js/jquery-1.11.3.js"></script>
@@ -94,12 +129,17 @@
 
 <script type="text/javascript">
 
-	jQuery(function($){
+	$(function($){
 		$('.drag').drag(function( ev, dd ){
 
-			var maxTop = $('.drag-conteiner').height() - $('.drag').height();
+			$('.drag').css("-webkit-animation-play-state", "running");
+			$('.drag').css("animation-play-state", "running");
+			
 			var topContainer = Math.round($('.drag-conteiner').offset().top);
-			var minTop = topContainer;
+			var maxTop = $('.drag-conteiner').height() - $('.drag').height(); 
+			var minTop = 0;
+
+			dd.offsetY = dd.offsetY - topContainer;
 
 			if(dd.offsetY > maxTop)
 				totalTop = maxTop;
@@ -108,8 +148,6 @@
 			else
 				totalTop = dd.offsetY;
 
-			totalTop = totalTop + topContainer;
-
 			$( this ).css({
 				top: totalTop,
 				width: dd.offsetX,
@@ -117,30 +155,19 @@
 		});
 	});
 
-/*
-	jQuery(function($){
-		var canvas = $('#draw')[0].getContext('2d');
-		canvas.strokeStyle = "#137";
-		canvas.lineCap = 'round';
-		canvas.lineWidth = 5;
-		canvas.beginPath();
-		$('#draw')
-			.drag("start",function( ev, dd ){
-				canvas.moveTo( 
-					ev.pageX - dd.originalX,
-					ev.pageY - dd.originalY
-				);
-			})
-			.drag(function( ev, dd ){	
-				canvas.lineTo(
-					ev.pageX - dd.originalX,
-					ev.pageY - dd.originalY
-				);
-				canvas.clearRect(0,0,680,300);
-				canvas.stroke(); 
-			});
+	$('.pausar').click(function(){
+			$('.drag').css("-webkit-animation-play-state", "paused");
+			$('.drag').css("animation-play-state", "paused");
 	});
-	*/
+
+	setTimeout(function(){
+		$('.drag-conteiner .animaciones').fadeIn();
+		$('.drag-conteiner .animaciones img').attr("src","img/peces.gif");
+	}, 3000);
+
+	setTimeout(function(){
+		$('.drag-conteiner .animaciones').fadeOut();
+	}, 8000);
 </script>
 
 </html>

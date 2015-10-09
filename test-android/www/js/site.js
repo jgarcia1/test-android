@@ -101,6 +101,8 @@ $(".step").click(function(){
 			$('.logo').addClass('blur');
 			$('#recorrido .row').addClass('blur');
 			$('#recorrido .pause').hide();
+			$('.drag').css("-webkit-animation-play-state", "paused");
+			$('.drag').css("animation-play-state", "paused");
 		break;
 
 		case 'retomar':
@@ -113,6 +115,9 @@ $(".step").click(function(){
 				alert('Debe seleccionar una característica al menos');
 				return false;
 			}
+
+			$('.drag').css("-webkit-animation-play-state", "running");
+			$('.drag').css("animation-play-state", "running");
 
 			timer(0);
 			$('#back-button').data('go','parar');//Ir al anterior
@@ -135,6 +140,8 @@ $(".step").click(function(){
 		break;
 
 		case 'finalizar':
+			$('.drag').css("-webkit-animation-play-state", "paused");
+			$('.drag').css("animation-play-state", "paused");
 			$(".estrella").children('span').removeClass('glyphicon-star').addClass('glyphicon-star-empty').removeAttr("style");
 			$("#finalizar .okay").parent().children('h4').show();
 			$("#finalizar .okay").hide();
@@ -147,7 +154,8 @@ $(".step").click(function(){
 	}
 });
 
-$("#linea").click(function(){
+//$(".drag").click(function(){
+function iniciar(){
 	if ($("#timer").data('inicio') == 0)
 	{
 		timer(0);
@@ -159,8 +167,17 @@ $("#linea").click(function(){
 		setTimeout(function(){
 			$('#recorrido .btn-primary').empty().addClass('circle pause').removeClass('btn-primary').fadeIn(200);
 		}, 200);
+
+		//Inicio las animaciones de la linea
+		cicloAnimaciones();
+
+		setInterval(function(){
+			//Cuando termina el ciclo de animaciones la vuelvo a iniciar
+			cicloAnimaciones();
+		}, 24000);
 	}
-});
+}
+//});
 
 function timer(action){
 	if(action == 0 && $("#timer").data('inicio') != 1)
@@ -451,6 +468,61 @@ function btnTop(){
 		console.log(newTop);
 	$('.btn-conteiner').css({top:newTop});
 }
+
+$(function($){
+	$('.drag').drag(function( ev, dd ){
+
+		iniciar();
+
+		$('.drag').css("-webkit-animation-play-state", "running");
+		$('.drag').css("animation-play-state", "running");
+		
+		var topContainer = Math.round($('.drag-conteiner').offset().top);
+		var maxTop = $('.drag-conteiner').height() - $('.drag').height(); 
+		var minTop = 0;
+
+		dd.offsetY = dd.offsetY - topContainer;
+
+		if(dd.offsetY > maxTop)
+			totalTop = maxTop;
+		else if(dd.offsetY < minTop)
+			totalTop = minTop;
+		else
+			totalTop = dd.offsetY;
+
+		$( this ).css({
+			top: totalTop,
+			width: dd.offsetX,
+		});
+	});
+});
+
+function cicloAnimaciones() {
+	if ($("#timer").data('inicio') == 1)
+	{
+		setTimeout(function(){
+			$('.drag-conteiner .animaciones').fadeIn();
+			$('.drag-conteiner .animaciones img').attr("src","img/pez1.gif");
+			$('.drag-conteiner .animaciones img').animate({'margin-left':'120%'}, 10000);
+		}, 3000);
+
+		setTimeout(function(){
+			$('.drag-conteiner .animaciones').fadeOut();
+		}, 13000);
+
+		setTimeout(function(){
+			$('.drag-conteiner .animaciones').fadeIn();
+			$('.drag-conteiner .animaciones img').css({'margin-left':'40%'});
+			$('.drag-conteiner .animaciones img').attr("src","img/octopus.gif");
+			$('.drag-conteiner .animaciones img').animate({'margin-left':'-20%'}, 10000);
+		}, 14000);
+
+		setTimeout(function(){
+			$('.drag-conteiner .animaciones').fadeOut();
+		}, 24000);
+	}
+}
+
 
 document.addEventListener("backbutton", onBackKeyDown, false);
 function onBackKeyDown() {
