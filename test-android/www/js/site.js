@@ -150,6 +150,7 @@ $(".step").click(function(){
 			$('.logo').addClass('blur');
 			$('#recorrido .row').addClass('blur');
 			$('#recorrido .pause').hide();
+			clearInterval(animationsInterval);
 		break;
 	}
 });
@@ -167,14 +168,17 @@ function iniciar(){
 		setTimeout(function(){
 			$('#recorrido .btn-primary').empty().addClass('circle pause').removeClass('btn-primary').fadeIn(200);
 		}, 200);
+		
+		//Limpio el intervalo si es que ya existe
+		clearInterval(animationsInterval);
 
 		//Inicio las animaciones de la linea
 		cicloAnimaciones();
 
-		setInterval(function(){
+		var animationsInterval = setInterval(function(){
 			//Cuando termina el ciclo de animaciones la vuelvo a iniciar
 			cicloAnimaciones();
-		}, 24000);
+		}, 61000);
 	}
 }
 //});
@@ -502,6 +506,7 @@ function cicloAnimaciones() {
 	{
 		setTimeout(function(){
 			$('.drag-conteiner .animaciones').fadeIn();
+			$('.drag-conteiner .animaciones img').css({'margin-left':'0'});
 			$('.drag-conteiner .animaciones img').attr("src","img/pez1.gif");
 			$('.drag-conteiner .animaciones img').animate({'margin-left':'120%'}, 10000);
 		}, 3000);
@@ -520,6 +525,29 @@ function cicloAnimaciones() {
 		setTimeout(function(){
 			$('.drag-conteiner .animaciones').fadeOut();
 		}, 24000);
+
+		setTimeout(function(){
+			$('.drag-conteiner .animaciones').fadeIn();
+			$('.drag-conteiner .animaciones img').css({'margin-left':'100%'});
+			$('.drag-conteiner .animaciones img').attr("src","img/delfin.gif");
+			$('.drag-conteiner .animaciones img').animate({'margin-left':'-20%'}, 20000);
+		}, 25000);
+
+		setTimeout(function(){
+			$('.drag-conteiner .animaciones').fadeOut();
+		}, 45000);
+
+
+		setTimeout(function(){
+			$('.drag-conteiner .animaciones').fadeIn();
+			$('.drag-conteiner .animaciones img').css({'margin-left':'-10%'});
+			$('.drag-conteiner .animaciones img').attr("src","img/submarino.gif");
+			$('.drag-conteiner .animaciones img').animate({'margin-left':'120%'}, 15000);
+		}, 46000);
+
+		setTimeout(function(){
+			$('.drag-conteiner .animaciones').fadeOut();
+		}, 61000);
 	}
 }
 
